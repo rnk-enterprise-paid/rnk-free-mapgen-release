@@ -14,18 +14,6 @@ Map width and height are set independently from 20 to 200 tiles. Grid size, tile
 
 Generated maps display in the GM Hub preview panel. Export to PNG, SVG, or JSON. Free tier allows 3 generations per day; the counter resets in 24 hours. Additional daily generations unlock through Patreon.
 
-**Mob and Loot Spawning**
-
-Mobs and loot are pulled from any Actor or Item compendium in the world. Mob count can be set manually or left at 0 for automatic density-based placement. Loot placement works the same way.
-
-**Campaign Mode**
-
-Multi-level dungeons generate with stair-placed tokens that warp players between scenes. Each level is its own Foundry scene. Level count is set before generation.
-
-**Death Loot Drops**
-
-When a token is reduced to 0 HP, a loot container spawns at its position. The container holds items from the token inventory and a gold amount scaled to the actor challenge rating.
-
 **Patreon Integration**
 
 Connect a Patreon account from the GM Hub header to increase the daily generation limit.
