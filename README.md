@@ -1,6 +1,6 @@
-﻿# RNK Free MapGen
+# RNK Free MapGen
 
-Foundry VTT dungeon map generator — free tier. Compatible with Foundry VTT v13+.
+Foundry VTT dungeon map generator — free tier. Compatible with Foundry VTT v11+ (verified v14).
 
 Support development and unlock additional tiers at https://www.patreon.com/RagNaroks
 
@@ -9,22 +9,22 @@ Support development and unlock additional tiers at https://www.patreon.com/RagNa
 ## Features
 
 **Dungeon Theme**
-Choose from 4 themes: Classic Dungeon, Natural Cave, Crypt, Sewer.
+2 themes: Classic Dungeon, Natural Cave.
 
 **Dimensions & Grid**
-Set width and height (20-200 tiles), grid size, tile size, grid type (square/hex/gridless), and seed for repeatable results.
+Width and height 20-200 tiles, grid size 50-120 px, grid type (square/hex/gridless), and seed for repeatable results.
 
 **Architecture**
-Control room count (3-80), levels (1-5), room size, and corridor complexity in a single row.
+Room count 3-80, levels 1-5, corridor complexity 1-5.
 
 **Traps & Hazards**
-Trap count, difficulty class (5-20), radius (1-10), and 5 trap types: None, Random, Spike Floor, Flame Jet, Pit Trap.
+Trap count 0-20, DC 5-20, radius 1-10. Trap types: None, Spike Floor.
 
 **Environment**
-Darkness level, light color, and 3 light animation options. 3 ambient sound options.
+Darkness slider, light color, 2 light animations (Torch, None), 2 ambient sounds (None, Dungeon Mix).
 
 **Adversaries**
-3 mob types, 3 density levels, patrol count (0-5).
+2 mob types (None, Undead), 2 density levels (None, Sparse), patrol count 0-5.
 
 **Automation**
 3 placement toggles: Walls, Doors, Lights.
