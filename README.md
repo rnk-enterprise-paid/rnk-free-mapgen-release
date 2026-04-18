@@ -4,6 +4,10 @@ Foundry VTT module for dungeon map generation. Requires the RNK map server runni
 
 Compatible with Foundry VTT v13 and v14.
 
+## Screenshots
+
+![RNK Free MapGen](RNK%20Free%20Mapgen.jpeg)
+
 ## v1.0.3
 
 **Dungeon Generation**
