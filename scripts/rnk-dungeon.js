@@ -2356,10 +2356,10 @@ class RnkDungeonGmHub extends AppV2Base {
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
           if (!isFloor(x, y) && !isDoor(x, y)) continue;
-          if (!isFloor(x, y - 1) && !isDoor(x, y - 1)) addWallSegment(x, y, x + 1, y);
-          if (!isFloor(x, y + 1) && !isDoor(x, y + 1)) addWallSegment(x, y + 1, x + 1, y + 1);
-          if (!isFloor(x - 1, y) && !isDoor(x - 1, y)) addWallSegment(x, y, x, y + 1);
-          if (!isFloor(x + 1, y) && !isDoor(x + 1, y)) addWallSegment(x + 1, y, x + 1, y + 1);
+          if (!isFloor(x, y - 1) && !isDoor(x, y - 1)) addWallSegment(x, y - 1, x + 1, y - 1);
+          if (!isFloor(x, y + 1) && !isDoor(x, y + 1)) addWallSegment(x, y + 2, x + 1, y + 2);
+          if (!isFloor(x - 1, y) && !isDoor(x - 1, y)) addWallSegment(x - 1, y, x - 1, y + 1);
+          if (!isFloor(x + 1, y) && !isDoor(x + 1, y)) addWallSegment(x + 2, y, x + 2, y + 1);
         }
       }
     }
