@@ -287,8 +287,10 @@ class RNKSceneTracker extends AppV2Base {
       controls: []
     },
     position: {
-      width: 450,
-      height: 600
+      width: 1280,
+      height: 900,
+      minWidth: 960,
+      minHeight: 720
     }
   };
 
@@ -3430,52 +3432,12 @@ Hooks.on("getSceneControlButtons", (controls) => {
       }
     };
 
-    const trapsTool = {
-      name: "toggle-traps-tool",
-      title: "RNK Free MapGen: Toggle Traps Overlay",
-      icon: "fas fa-skull-crossbones",
-      button: true,
-      toggle: true,
-      onChange: (active) => {
-        window.RNK_TRAPS_VISIBLE = active;
-        if (typeof renderSceneTraps === "function") renderSceneTraps();
-        else if (game.rnkMapper?.renderSceneTraps) game.rnkMapper.renderSceneTraps();
-      }
-    };
-
-    const movementTool = {
-      name: "movement-pause-tool",
-      title: "RNK Free MapGen: Toggle Mob Movement",
-      icon: "fas fa-route",
-      button: true,
-      toggle: true,
-      onChange: (active) => {
-        const movement = window.RnkMobMovement || game.rnkMapper?.RnkMobMovement;
-        if (!movement) {
-          ui.notifications.warn("RNK Free MapGen: Movement system not loaded.");
-          return;
-        }
-        if (active) {
-          // Button toggled ON → start or resume
-          if (!movement.intervalId) {
-            // Loop not running at all — initialize from current scene
-            const scene = canvas?.scene;
-            if (!scene) {
-              ui.notifications.warn("RNK Free MapGen: No active scene to start movement on.");
-              return;
-            }
-            movement.initialize(scene, movement.config);
-            ui.notifications.info("RNK Free MapGen: Mob movement started.");
-          } else {
-            // Loop running but paused — resume it
-            movement.resume();
-            ui.notifications.info("RNK Free MapGen: Mob movement resumed.");
-          }
-        } else {
-          // Button toggled OFF → pause
-          movement.pause();
-          ui.notifications.info("RNK Free MapGen: Mob movement paused.");
-        }
+    const openHub = () => {
+      const hub = window.RnkDungeonGmHub || game.rnkMapper?.RnkDungeonGmHub;
+      if (hub) {
+        hub.instance.render({ force: true });
+      } else {
+        ui.notifications.error("RNK Free MapGen: GM Hub not initialized.");
       }
     };
 
@@ -3487,10 +3449,10 @@ Hooks.on("getSceneControlButtons", (controls) => {
       layer: "tokens",
       visible: game.user.isGM,
       activeTool: "gm-hub-open",
-      tools: Array.isArray(controls) ? [gmHubTool, trapsTool, movementTool] : { 
-        "gm-hub-open": gmHubTool, 
-        "toggle-traps-tool": trapsTool, 
-        "movement-pause-tool": movementTool 
+      onChange: (event, active) => { if (active) openHub(); },
+      onClick: () => openHub(),
+      tools: Array.isArray(controls) ? [gmHubTool] : {
+        "gm-hub-open": gmHubTool
       }
     };
 
@@ -3505,8 +3467,26 @@ Hooks.on("getSceneControlButtons", (controls) => {
   }
 });
 
-// Remove redundant renderSceneControls listener as onClick handles it in ApplicationV2/Tools API
-// Hooks.on("renderSceneControls", ...) exists below, let's remove it if it causes issues.
+// Bind a direct click listener to the scene-control tab so clicking the
+// main RNK Free MapGen button in the left sidebar opens the GM Hub immediately
+// (Foundry v13+ onChange only fires on state transitions, not on re-clicks).
+Hooks.on("renderSceneControls", (app, html) => {
+  try {
+    if (!game.user?.isGM) return;
+    const root = html instanceof HTMLElement ? html : (html?.[0] || html);
+    if (!root || !root.querySelector) return;
+    const btn = root.querySelector('[data-control="rnk-free-mapgen"]');
+    if (!btn || btn.dataset.rnkHubBound === "1") return;
+    btn.dataset.rnkHubBound = "1";
+    btn.addEventListener("click", () => {
+      const hub = window.RnkDungeonGmHub || game.rnkMapper?.RnkDungeonGmHub;
+      if (hub) hub.instance.render({ force: true });
+      else ui.notifications.error("RNK Free MapGen: GM Hub not initialized.");
+    });
+  } catch (err) {
+    console.error("RNK Free MapGen: Failed to bind scene-control click", err);
+  }
+});
 
 // Register settings
 Hooks.once("init", () => {

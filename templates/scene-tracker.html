@@ -1,13 +1,17 @@
 <div class="rnk-tracker-hub">
   <header class="rnk-tracker-header">
-    <h2><i class="fas fa-satellite-dish"></i> {{data.currentScene.name}} <span class="rnk-badge">Active</span></h2>
+    <div class="rnk-tracker-header__title">
+      <h2><i class="fas fa-satellite-dish"></i> {{data.currentScene.name}} <span class="rnk-badge">Active</span></h2>
+      <p>Compact tracking for free-tier sessions with the same clean control shell.</p>
+    </div>
     <div class="rnk-status-line">
       <span><i class="fas fa-clock"></i> Session Time: <strong data-time>00:00</strong></span>
       <span><i class="fas fa-users"></i> Players: <strong>{{data.players.length}}</strong></span>
+      <span><i class="fas fa-wave-square"></i> Rolls: <strong>{{data.analytics.totalRolls}}</strong></span>
+      <span><i class="fas fa-skull-crossbones"></i> Crits: <strong>{{data.analytics.crits}}</strong></span>
     </div>
   </header>
 
-  <!-- Analytics Dashboard -->
   <section class="rnk-section">
     <header class="rnk-section__header"><i class="fas fa-chart-line"></i> Combat & Action Analytics</header>
     <div class="rnk-section__content">
@@ -53,9 +57,8 @@
     </div>
   </section>
 
-  <!-- Live Events Feed -->
   <section class="rnk-section">
-    <header class="rnk-section__header"><i class="fas fa-stream"></i> Tactial Event Log</header>
+    <header class="rnk-section__header"><i class="fas fa-stream"></i> Tactical Event Log</header>
     <div class="rnk-section__content">
       <div class="rnk-event-log" data-event-log>
         {{#each data.events}}
@@ -68,12 +71,11 @@
     </div>
   </section>
 
-  <!-- Quick Controls -->
   <div class="rnk-tracker-footer">
-    <button type="button" class="rnk-btn rnk-btn--danger" data-action="reset-analytics">
+    <button type="button" class="rnk-btn rnk-btn--danger" data-action="reset-analytics" title="Reset session analytics">
       <i class="fas fa-trash"></i> Reset Session
     </button>
-    <button type="button" class="rnk-btn rnk-btn--ghost" data-action="export-analytics">
+    <button type="button" class="rnk-btn rnk-btn--ghost" data-action="export-analytics" title="Export analytics report">
       <i class="fas fa-file-export"></i> Export Report
     </button>
   </div>
