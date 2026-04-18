@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-label="RNK Free MapGen mark">
+  <defs>
+    <linearGradient id="g" x1="32" y1="24" x2="224" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6a6a"/>
+      <stop offset="1" stop-color="#6b1111"/>
+    </linearGradient>
+  </defs>
+  <path d="M128 20 214 64v104l-86 68-86-68V64z" fill="#121212" stroke="url(#g)" stroke-width="10"/>
+  <path d="M128 44 194 78v82l-66 52-66-52V78z" fill="#1d0d0d" stroke="#c41e3a" stroke-width="6"/>
+  <path d="M96 156V112c0-17 14-31 32-31s32 14 32 31v44" stroke="#ff8d8d" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M86 168h84" stroke="#ff8d8d" stroke-width="12" stroke-linecap="round"/>
+  <path d="M88 90h80" stroke="#8b1a1a" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="128" cy="102" r="10" fill="#ffb3b3"/>
+</svg>

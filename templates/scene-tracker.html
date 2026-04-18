@@ -1,0 +1,80 @@
+<div class="rnk-tracker-hub">
+  <header class="rnk-tracker-header">
+    <h2><i class="fas fa-satellite-dish"></i> {{data.currentScene.name}} <span class="rnk-badge">Active</span></h2>
+    <div class="rnk-status-line">
+      <span><i class="fas fa-clock"></i> Session Time: <strong data-time>00:00</strong></span>
+      <span><i class="fas fa-users"></i> Players: <strong>{{data.players.length}}</strong></span>
+    </div>
+  </header>
+
+  <!-- Analytics Dashboard -->
+  <section class="rnk-section">
+    <header class="rnk-section__header"><i class="fas fa-chart-line"></i> Combat & Action Analytics</header>
+    <div class="rnk-section__content">
+      <div class="rnk-analytics-grid">
+        <div class="rnk-stat-card">
+          <span class="value" data-stat="total-rolls">{{data.analytics.totalRolls}}</span>
+          <span class="label">Total Rolls</span>
+        </div>
+        <div class="rnk-stat-card">
+          <span class="value" data-stat="crit-count">{{data.analytics.crits}}</span>
+          <span class="label">Crits (Nat 20)</span>
+        </div>
+        <div class="rnk-stat-card">
+          <span class="value" data-stat="fumble-count">{{data.analytics.fumbles}}</span>
+          <span class="label">Fumbles (Nat 1)</span>
+        </div>
+        <div class="rnk-stat-card">
+          <span class="value" data-stat="dmg-dealt">{{data.analytics.totalDamage}}</span>
+          <span class="label">Total Damage</span>
+        </div>
+      </div>
+
+      <table class="rnk-table analytics-table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Type</th>
+            <th>Avg Roll</th>
+            <th>Most Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data.players}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.className}}</td>
+            <td>{{this.analytics.avgRoll}}</td>
+            <td>{{this.analytics.topAction}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Live Events Feed -->
+  <section class="rnk-section">
+    <header class="rnk-section__header"><i class="fas fa-stream"></i> Tactial Event Log</header>
+    <div class="rnk-section__content">
+      <div class="rnk-event-log" data-event-log>
+        {{#each data.events}}
+        <div class="rnk-event-item {{this.type}}">
+          <span class="time">{{this.time}}</span>
+          <span class="msg">{{this.message}}</span>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Controls -->
+  <div class="rnk-tracker-footer">
+    <button type="button" class="rnk-btn rnk-btn--danger" data-action="reset-analytics">
+      <i class="fas fa-trash"></i> Reset Session
+    </button>
+    <button type="button" class="rnk-btn rnk-btn--ghost" data-action="export-analytics">
+      <i class="fas fa-file-export"></i> Export Report
+    </button>
+  </div>
+</div>

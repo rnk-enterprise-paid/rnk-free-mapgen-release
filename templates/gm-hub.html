@@ -1,0 +1,153 @@
+<form class="rnk-form" autocomplete="off" data-theme="{{#if data.defaults.dungeon_theme}}{{data.defaults.dungeon_theme}}{{else}}classic_dungeon{{/if}}">
+  <!-- Header -->
+  <div class="rnk-header">
+    <div class="rnk-header__title">
+      <img class="rnk-brand-mark" src="modules/rnk-free-mapgen/assets/rnk-mark.svg" alt="" aria-hidden="true">
+      <div class="rnk-brand-copy">
+      <h1><i class="fas fa-dice-d20"></i> RNK FREE MAPGEN</h1>
+        <span class="rnk-tier-badge">Free Tier</span>
+      </div>
+      <span class="rnk-status" data-status="{{data.serverStatus}}"><i class="fas fa-circle"></i> {{data.serverStatus}}</span>
+      <span class="rnk-status" data-patreon-auth-chip data-state="locked" style="margin-left:8px;"><i class="fab fa-patreon"></i> Patreon: locked</span>
+    </div>
+    <div class="rnk-header__actions">
+      <button type="button" class="rnk-btn-icon" data-action="patreon-login" title="Connect Patreon"><i class="fab fa-patreon"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="patreon-logout" title="Disconnect Patreon"><i class="fas fa-right-from-bracket"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="test-connection" title="Test Connection"><i class="fas fa-sync-alt"></i></button>
+      <button type="button" class="rnk-btn-icon" data-action="open-tracker" title="Open Scene Tracker"><i class="fas fa-satellite-dish"></i></button>
+    </div>
+  </div>
+
+  <div class="rnk-workspace">
+    <!-- LEFT: CONTROLS (Compact Grid Layout) -->
+    <div class="rnk-controls">
+      <div class="rnk-section">
+        <div class="rnk-section__header"><i class="fas fa-scroll"></i> DUNGEON THEME</div>
+        <div class="rnk-row stack">
+          <div class="rnk-field compact">
+            <label>Theme</label>
+            <select name="dungeon_theme" class="rnk-select" title="Dungeon Theme">
+              <option value="abandoned_mine" {{#if (eq data.defaults.dungeon_theme "abandoned_mine")}}selected{{/if}}>Abandoned Mine</option>
+              <option value="arcane_laboratory" {{#if (eq data.defaults.dungeon_theme "arcane_laboratory")}}selected{{/if}}>Arcane Laboratory</option>
+              <option value="celestial" {{#if (eq data.defaults.dungeon_theme "celestial")}}selected{{/if}}>Celestial</option>
+              <option value="classic_dungeon" {{#if (eq data.defaults.dungeon_theme "classic_dungeon")}}selected{{/if}}>Classic Dungeon</option>
+              <option value="clockwork" {{#if (eq data.defaults.dungeon_theme "clockwork")}}selected{{/if}}>Clockwork</option>
+              <option value="corrupted_temple" {{#if (eq data.defaults.dungeon_theme "corrupted_temple")}}selected{{/if}}>Corrupted Temple</option>
+              <option value="crypt" {{#if (eq data.defaults.dungeon_theme "crypt")}}selected{{/if}}>Crypt</option>
+              <option value="crystal_cavern" {{#if (eq data.defaults.dungeon_theme "crystal_cavern")}}selected{{/if}}>Crystal Cavern</option>
+              <option value="drow_temple" {{#if (eq data.defaults.dungeon_theme "drow_temple")}}selected{{/if}}>Drow Temple</option>
+              <option value="eldritch" {{#if (eq data.defaults.dungeon_theme "eldritch")}}selected{{/if}}>Eldritch</option>
+              <option value="forest" {{#if (eq data.defaults.dungeon_theme "forest")}}selected{{/if}}>Forest</option>
+              <option value="frozen" {{#if (eq data.defaults.dungeon_theme "frozen")}}selected{{/if}}>Frozen</option>
+              <option value="fungal_underdark" {{#if (eq data.defaults.dungeon_theme "fungal_underdark")}}selected{{/if}}>Fungal Underdark</option>
+              <option value="infernal" {{#if (eq data.defaults.dungeon_theme "infernal")}}selected{{/if}}>Infernal</option>
+              <option value="lava" {{#if (eq data.defaults.dungeon_theme "lava")}}selected{{/if}}>Lava</option>
+              <option value="modern" {{#if (eq data.defaults.dungeon_theme "modern")}}selected{{/if}}>Modern</option>
+              <option value="natural_cave" {{#if (eq data.defaults.dungeon_theme "natural_cave")}}selected{{/if}}>Natural Cave</option>
+              <option value="sewer" {{#if (eq data.defaults.dungeon_theme "sewer")}}selected{{/if}}>Sewer</option>
+              <option value="sunken_ruins" {{#if (eq data.defaults.dungeon_theme "sunken_ruins")}}selected{{/if}}>Sunken Ruins</option>
+              <option value="underwater" {{#if (eq data.defaults.dungeon_theme "underwater")}}selected{{/if}}>Underwater</option>
+              <option value="volcanic" {{#if (eq data.defaults.dungeon_theme "volcanic")}}selected{{/if}}>Volcanic</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="rnk-section">
+        <div class="rnk-section__header thin"><i class="fas fa-vector-square"></i> DIMENSIONS & GRID</div>
+        <div class="rnk-row stack">
+          <div class="rnk-field compact">
+            <label>Width <span class="range-value">{{data.defaults.width}}</span></label>
+            <input type="range" name="width" value="{{data.defaults.width}}" min="20" max="200" class="rnk-input" title="Width">
+          </div>
+          <div class="rnk-field compact">
+            <label>Height <span class="range-value">{{data.defaults.height}}</span></label>
+            <input type="range" name="height" value="{{data.defaults.height}}" min="20" max="200" class="rnk-input" title="Height">
+          </div>
+          <div class="rnk-field compact">
+            <label>Grid Size <span class="range-value">{{data.sceneOptions.gridSize}}</span></label>
+            <input type="range" name="grid_size" value="{{data.sceneOptions.gridSize}}" min="50" max="200" class="rnk-input" title="Grid Size">
+          </div>
+          <div class="rnk-field compact">
+            <label>Seed</label>
+            <input type="text" name="seed" value="{{data.defaults.seed}}" placeholder="Random" class="rnk-input">
+          </div>
+          <div class="rnk-field compact">
+            <label>Tile Size</label>
+            <select name="tile_size" class="rnk-select" title="Tile Size">
+              <option value="8">8px</option>
+              <option value="12" selected>12px</option>
+              <option value="16">16px</option>
+            </select>
+          </div>
+          <div class="rnk-field compact">
+            <label>Grid Type</label>
+            <select name="grid_type" class="rnk-select" title="Grid Type">
+              <option value="square" selected>Square</option>
+              <option value="hex">Hex</option>
+            </select>
+          </div>
+          <div class="rnk-field compact rnk-field--scene-name">
+            <label>Scene Name</label>
+            <input type="text" name="scene_name" value="{{data.defaults.scene_name}}" placeholder="Auto-generated" class="rnk-input">
+          </div>
+        </div>
+      </div>
+
+      <div class="rnk-row actions">
+        <button type="button" class="rnk-btn rnk-btn--primary" data-action="generate" {{#if (eq data.genUsed data.genLimit)}}disabled title="Daily limit reached. Try again tomorrow."{{/if}}>
+          <i class="fas fa-dice-d20"></i> GENERATE
+        </button>
+        <button type="button" class="rnk-btn rnk-btn--success" data-action="create-scene" {{#unless data.hasResult}}disabled{{/unless}}>
+          <i class="fas fa-plus-circle"></i> CREATE
+        </button>
+      </div>
+
+      <div class="rnk-gen-counter {{#if (eq data.genUsed data.genLimit)}}rnk-gen-counter--exhausted{{/if}}">
+        <span class="rnk-gen-counter__label"><i class="fas fa-hourglass-half"></i> Daily Generations</span>
+        <span class="rnk-gen-counter__pips">
+          <span class="rnk-gen-pip {{#if (gt data.genUsed 0)}}rnk-gen-pip--used{{/if}}"></span>
+          <span class="rnk-gen-pip {{#if (gt data.genUsed 1)}}rnk-gen-pip--used{{/if}}"></span>
+          <span class="rnk-gen-pip {{#if (gt data.genUsed 2)}}rnk-gen-pip--used{{/if}}"></span>
+        </span>
+        <span class="rnk-gen-counter__text">{{data.genUsed}} / {{data.genLimit}} used</span>
+        {{#if (eq data.genUsed data.genLimit)}}
+          <span class="rnk-gen-counter__limit-msg">Limit reached — resets in 24h</span>
+        {{/if}}
+      </div>
+
+      <div class="rnk-row exports">
+        <button type="button" class="rnk-btn-small" data-action="download-png" {{#unless data.hasResult}}disabled{{/unless}}>PNG</button>
+        <button type="button" class="rnk-btn-small" data-action="download-svg" {{#unless data.hasResult}}disabled{{/unless}}>SVG</button>
+        <button type="button" class="rnk-btn-small" data-action="download-json" {{#unless data.hasResult}}disabled{{/unless}}>JSON</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: LARGE PREVIEW -->
+    <div class="rnk-preview-panel {{#if data.hasResult}}has-result{{/if}}">
+      {{#if data.hasResult}}
+        {{#if data.multiLevel}}
+        <div class="rnk-level-nav">
+          <button type="button" class="rnk-btn-icon" data-action="prev-level" title="Previous level" aria-label="Previous level" {{#if (eq data.multiLevelIndex 0)}}disabled{{/if}}><i class="fas fa-chevron-left"></i></button>
+          <span class="rnk-level-counter">Level {{add data.multiLevelIndex 1}} / {{data.multiLevelCount}}</span>
+          <button type="button" class="rnk-btn-icon" data-action="next-level" title="Next level" aria-label="Next level" {{#if (eq data.multiLevelIndex (subtract data.multiLevelCount 1))}}disabled{{/if}}><i class="fas fa-chevron-right"></i></button>
+        </div>
+        {{/if}}
+        <img class="rnk-preview-image" alt="Dungeon Preview" src="data:image/png;base64,{{data.result.image_png}}">
+        <div class="rnk-preview-info">
+          <div class="info-item"><i class="fas fa-door-open"></i> {{data.result.rooms.length}} Rooms</div>
+          <div class="info-item"><i class="fas fa-route"></i> {{data.result.passages.length}} Passages</div>
+          {{#if (gt (patrolCount data.result.patrols) 0)}}
+          <div class="info-item"><i class="fas fa-eye"></i> {{patrolCount data.result.patrols}} Patrols</div>
+          {{/if}}
+          <div class="info-item"><i class="fas fa-seedling"></i> {{data.result.seed}}</div>
+        </div>
+      {{else}}
+        <div class="rnk-preview-placeholder">
+          <i class="fas fa-dungeon"></i>
+          <p>Generate a dungeon to preview the map</p>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</form>

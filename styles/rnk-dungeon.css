@@ -1,0 +1,878 @@
+/* RNK Free MapGen - Gothic Crimson Blood Theme */
+
+:root {
+  --rnk-crimson: #c41e3a;         /* Deep Crimson */
+  --rnk-blood: #8b1a1a;           /* Blood Red */
+  --rnk-dark-blood: #3d0a0a;      /* Dark Blood */
+  --rnk-black: #0a0a0a;           /* Deep Black */
+  --rnk-text: #e8e8e8;            /* Off-white */
+  --rnk-accent: #ff4444;          /* Bright Blood Red */
+  --rnk-accent-dark: #cc1111;     /* Dark Accent */
+}
+
+.rnk-gm-hub.window-app,
+.rnk-scene-tracker.window-app {
+  background: var(--rnk-black) !important;
+  color: var(--rnk-text) !important;
+  border: 2px solid var(--rnk-crimson) !important;
+  box-shadow: 0 0 25px rgba(196, 30, 58, 0.6), inset 0 0 15px rgba(139, 26, 26, 0.3) !important;
+}
+
+.rnk-gm-hub .window-content {
+  background: linear-gradient(135deg, var(--rnk-black) 0%, var(--rnk-dark-blood) 5%) !important;
+  padding: 0 !important;
+}
+
+.rnk-form {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  width: 100% !important;
+  background: linear-gradient(135deg, var(--rnk-black) 0%, var(--rnk-dark-blood) 100%) !important;
+}
+
+.rnk-header-bar {
+  flex: 0 0 60px !important;
+  background: linear-gradient(90deg, var(--rnk-dark-blood) 0%, var(--rnk-black) 100%) !important;
+  border-bottom: 3px solid var(--rnk-crimson) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 20px !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.5) !important;
+}
+
+.rnk-dashboard {
+  flex: 1 !important;
+  display: flex !important;
+  overflow: hidden !important;
+}
+
+.rnk-sidebar {
+  width: 350px !important;
+  background: var(--rnk-dark-blood) !important;
+  border-right: 2px solid var(--rnk-blood) !important;
+  padding: 15px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px !important;
+  box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+.rnk-main-view {
+  flex: 1 !important;
+  background: var(--rnk-black) !important;
+  padding: 20px !important;
+  overflow-y: auto !important;
+}
+
+.rnk-section {
+  border: 1px solid var(--rnk-blood) !important;
+  background: rgba(61, 10, 10, 0.4) !important;
+  margin-bottom: 10px !important;
+  box-shadow: 0 0 10px rgba(139, 26, 26, 0.3) !important;
+}
+
+.rnk-section__header {
+  background: linear-gradient(90deg, var(--rnk-dark-blood) 0%, rgba(139, 26, 26, 0.5) 100%) !important;
+  color: var(--rnk-text) !important;
+  padding: 10px !important;
+  font-weight: bold !important;
+  border-bottom: 1px solid var(--rnk-crimson) !important;
+  text-shadow: 0 0 5px rgba(196, 30, 58, 0.5) !important;
+}
+
+.rnk-field {
+  margin-bottom: 10px !important;
+}
+
+.rnk-field--scene-name {
+  flex: 2 1 auto !important;
+}
+
+.rnk-field label {
+  display: block !important;
+  color: var(--rnk-text) !important;
+  font-size: 12px !important;
+  margin-bottom: 4px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 600 !important;
+}
+
+.rnk-select, .rnk-input {
+  width: 100% !important;
+  background: rgba(20, 20, 20, 0.8) !important;
+  color: var(--rnk-text) !important;
+  border: 1px solid var(--rnk-blood) !important;
+  height: 30px !important;
+  box-shadow: 0 0 8px rgba(139, 26, 26, 0.2) inset !important;
+  transition: all 0.2s ease !important;
+}
+
+.rnk-select:focus, .rnk-input:focus {
+  border-color: var(--rnk-crimson) !important;
+  box-shadow: 0 0 12px rgba(196, 30, 58, 0.4) !important;
+  outline: none !important;
+}
+
+.rnk-btn {
+  background: linear-gradient(135deg, var(--rnk-blood) 0%, var(--rnk-accent-dark) 100%) !important;
+  color: white !important;
+  border: 1px solid var(--rnk-crimson) !important;
+  padding: 10px !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 10px rgba(196, 30, 58, 0.4) !important;
+  transition: all 0.2s ease !important;
+}
+
+.rnk-btn:hover {
+  box-shadow: 0 0 15px rgba(196, 30, 58, 0.6) !important;
+  background: linear-gradient(135deg, var(--rnk-accent) 0%, var(--rnk-blood) 100%) !important;
+}
+
+.rnk-btn--primary { background: linear-gradient(135deg, var(--rnk-accent) 0%, var(--rnk-blood) 100%) !important; }
+.rnk-btn--accent { background: linear-gradient(135deg, var(--rnk-crimson) 0%, var(--rnk-blood) 100%) !important; }
+.rnk-btn--success { background: linear-gradient(135deg, #2d5a27 0%, #1a3a1a 100%) !important; border-color: #4a7a47 !important; }
+.rnk-btn--warning { background: linear-gradient(135deg, #8a6d1b 0%, #5a4510 100%) !important; border-color: #b8960f !important; }
+
+.rnk-status-bar {
+  background: linear-gradient(90deg, var(--rnk-dark-blood) 0%, rgba(139, 26, 26, 0.3) 100%) !important;
+  padding: 10px !important;
+  border: 1px solid var(--rnk-blood) !important;
+  margin-bottom: 10px !important;
+  box-shadow: 0 0 10px rgba(139, 26, 26, 0.3) !important;
+}
+
+/* NEW HORIZONTAL LAYOUT */
+.rnk-header {
+  flex: 0 0 50px !important;
+  background: linear-gradient(90deg, var(--rnk-dark-blood) 0%, rgba(139, 26, 26, 0.4) 100%) !important;
+  border-bottom: 2px solid var(--rnk-crimson) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 15px !important;
+  box-shadow: 0 0 15px rgba(196, 30, 58, 0.3) !important;
+}
+
+.rnk-header__title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+}
+
+.rnk-header__title h1 {
+  margin: 0 !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: var(--rnk-accent) !important;
+  text-shadow: 0 0 10px rgba(196, 30, 58, 0.6) !important;
+  letter-spacing: 1px !important;
+}
+
+.rnk-status {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 12px !important;
+  color: var(--rnk-text) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rnk-status i {
+  color: var(--rnk-crimson) !important;
+  text-shadow: 0 0 5px rgba(196, 30, 58, 0.8) !important;
+}
+
+.rnk-header__actions {
+  display: flex !important;
+  gap: 5px !important;
+}
+
+.rnk-btn-icon {
+  background: rgba(139, 26, 26, 0.3) !important;
+  color: var(--rnk-text) !important;
+  border: 1px solid var(--rnk-blood) !important;
+  width: 32px !important;
+  height: 32px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+.rnk-btn-icon:hover {
+  background: var(--rnk-blood) !important;
+  border-color: var(--rnk-crimson) !important;
+  box-shadow: 0 0 10px rgba(196, 30, 58, 0.5) !important;
+}
+
+.rnk-btn-icon:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* MULTI-LEVEL NAVIGATION */
+.rnk-level-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: 6px 0 !important;
+  border-bottom: 1px solid var(--rnk-blood) !important;
+  margin-bottom: 8px !important;
+}
+
+.rnk-level-counter {
+  font-family: "Modesto Condensed", "Times New Roman", serif !important;
+  font-size: 13px !important;
+  color: var(--rnk-crimson) !important;
+  letter-spacing: 1px !important;
+  min-width: 100px !important;
+  text-align: center !important;
+}
+
+/* MAIN WORKSPACE - HORIZONTAL LAYOUT */
+.rnk-workspace {
+  flex: 1 !important;
+  display: flex !important;
+  overflow: hidden !important;
+}
+
+.rnk-controls {
+  width: 360px !important;
+  background: linear-gradient(135deg, var(--rnk-black) 0%, var(--rnk-dark-blood) 100%) !important;
+  border-right: 2px solid var(--rnk-blood) !important;
+  padding: 12px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+.rnk-row {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  padding: 4px 0 !important;
+}
+
+.rnk-row.stack {
+  flex-direction: column !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+}
+
+.rnk-row.toggles {
+  flex-wrap: wrap !important;
+  border-top: 1px solid rgba(139, 26, 26, 0.3) !important;
+  padding-top: 10px !important;
+}
+
+.rnk-row.actions {
+  gap: 6px !important;
+  border-top: 1px solid rgba(139, 26, 26, 0.3) !important;
+  padding-top: 10px !important;
+  margin-top: 5px !important;
+}
+
+/* Gen counter */
+.rnk-gen-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-top: 6px;
+  background: rgba(61, 10, 10, 0.6);
+  border: 1px solid rgba(139, 26, 26, 0.4);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #b0a0a0;
+  flex-wrap: wrap;
+}
+
+.rnk-gen-counter--exhausted {
+  border-color: rgba(196, 30, 58, 0.7);
+  background: rgba(61, 10, 10, 0.85);
+  color: #e8c0c0;
+}
+
+.rnk-gen-counter__label {
+  font-weight: 600;
+  color: #c89090;
+  white-space: nowrap;
+}
+
+.rnk-gen-counter__pips {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.rnk-gen-pip {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(139, 26, 26, 0.3);
+  border: 1px solid rgba(196, 30, 58, 0.5);
+  display: inline-block;
+}
+
+.rnk-gen-pip--used {
+  background: var(--rnk-crimson, #c41e3a);
+  border-color: var(--rnk-accent, #ff4444);
+  box-shadow: 0 0 4px rgba(196, 30, 58, 0.6);
+}
+
+.rnk-gen-counter__text {
+  color: #a08080;
+  font-size: 10px;
+}
+
+.rnk-gen-counter__limit-msg {
+  color: var(--rnk-accent, #ff4444);
+  font-size: 10px;
+  font-style: italic;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.rnk-row.exports {
+  gap: 4px !important;
+}
+
+.rnk-field.compact {
+  flex: 1 1 22% !important;
+  min-width: 140px !important;
+  margin-bottom: 0 !important;
+}
+
+.rnk-row.stack .rnk-field.compact,
+.rnk-row.stack .rnk-field--scene-name {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.rnk-row.stack .rnk-field.compact .rnk-input,
+.rnk-row.stack .rnk-field.compact .rnk-select {
+  width: 100% !important;
+}
+
+.rnk-row.stack .rnk-field--scene-name {
+  width: 100% !important;
+}
+
+.rnk-field.compact label {
+  font-size: 11px !important;
+  margin-bottom: 2px !important;
+  color: var(--rnk-text) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 600 !important;
+}
+
+.rnk-field.compact .rnk-input,
+.rnk-field.compact .rnk-select {
+  height: 28px !important;
+  font-size: 12px !important;
+  padding: 4px !important;
+  background: rgba(20, 20, 20, 0.8) !important;
+  border: 1px solid var(--rnk-blood) !important;
+  color: var(--rnk-text) !important;
+}
+
+.rnk-toggle.compact {
+  flex: 1 1 14% !important;
+  min-width: 70px !important;
+  margin-bottom: 0 !important;
+}
+
+.rnk-toggle.compact span:last-child {
+  font-size: 11px !important;
+  color: var(--rnk-text) !important;
+}
+
+.rnk-toggle.compact input[type="checkbox"] {
+  accent-color: var(--rnk-crimson) !important;
+}
+
+.rnk-toggle.compact .toggle-switch {
+  display: none;
+}
+
+.rnk-btn--primary, .rnk-btn--success {
+  flex: 1 !important;
+  padding: 8px !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
+}
+
+.rnk-btn-small {
+  background: rgba(139, 26, 26, 0.4) !important;
+  color: var(--rnk-text) !important;
+  border: 1px solid var(--rnk-blood) !important;
+  padding: 5px 8px !important;
+  font-size: 11px !important;
+  cursor: pointer !important;
+  flex: 1 !important;
+  transition: all 0.2s ease !important;
+}
+
+.rnk-btn-small:hover {
+  background: var(--rnk-blood) !important;
+  border-color: var(--rnk-crimson) !important;
+  box-shadow: 0 0 8px rgba(196, 30, 58, 0.4) !important;
+}
+
+.rnk-btn-small:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* LARGE PREVIEW PANEL */
+.rnk-preview-panel {
+  flex: 1 !important;
+  background: linear-gradient(135deg, var(--rnk-black) 0%, rgba(61, 10, 10, 0.2) 100%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  padding: 15px !important;
+  border-left: 1px solid rgba(139, 26, 26, 0.3) !important;
+}
+
+.rnk-preview-image {
+  max-width: 100% !important;
+  max-height: 85% !important;
+  object-fit: contain !important;
+  border: 3px solid var(--rnk-blood) !important;
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.4), 0 0 40px rgba(139, 26, 26, 0.2) !important;
+}
+
+.rnk-preview-placeholder {
+  text-align: center !important;
+  color: rgba(102, 102, 102, 0.6) !important;
+}
+
+.rnk-preview-placeholder i {
+  font-size: 60px !important;
+  margin-bottom: 15px !important;
+  color: rgba(196, 30, 58, 0.2) !important;
+}
+
+.rnk-preview-placeholder p {
+  font-size: 14px !important;
+  color: rgba(139, 26, 26, 0.4) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.rnk-preview-info {
+  display: flex !important;
+  gap: 20px !important;
+  margin-top: 10px !important;
+  font-size: 12px !important;
+  color: var(--rnk-text) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.info-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  color: var(--rnk-accent) !important;
+}
+
+.info-item i {
+  color: var(--rnk-crimson) !important;
+}
+
+/* Range Slider Styling */
+.range-value {
+  float: right !important;
+  color: var(--rnk-crimson) !important;
+  font-family: 'Courier New', Courier, monospace !important;
+  font-weight: bold !important;
+}
+
+input[type="range"].rnk-input {
+  -webkit-appearance: none !important;
+  width: 100% !important;
+  background: transparent !important;
+  height: 28px !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+input[type="range"].rnk-input:focus {
+  outline: none !important;
+}
+
+input[type="range"].rnk-input::-webkit-slider-runnable-track {
+  width: 100% !important;
+  height: 4px !important;
+  cursor: pointer !important;
+  background: rgba(139, 26, 26, 0.4) !important;
+  border-radius: 2px !important;
+  border: 1px solid var(--rnk-blood) !important;
+}
+
+input[type="range"].rnk-input::-webkit-slider-thumb {
+  height: 16px !important;
+  width: 16px !important;
+  border-radius: 50% !important;
+  background: var(--rnk-crimson) !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important;
+  margin-top: -7px !important;
+  box-shadow: 0 0 5px var(--rnk-blood) !important;
+  border: 1px solid var(--rnk-text) !important;
+}
+
+input[type="range"].rnk-input:focus::-webkit-slider-runnable-track {
+  background: rgba(139, 26, 26, 0.6) !important;
+}
+
+input[type="range"].rnk-input::-moz-range-track {
+  width: 100% !important;
+  height: 4px !important;
+  cursor: pointer !important;
+  background: rgba(139, 26, 26, 0.4) !important;
+  border-radius: 2px !important;
+  border: 1px solid var(--rnk-blood) !important;
+}
+
+input[type="range"].rnk-input::-moz-range-thumb {
+  height: 16px !important;
+  width: 16px !important;
+  border-radius: 50% !important;
+  background: var(--rnk-crimson) !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 5px var(--rnk-blood) !important;
+  border: 1px solid var(--rnk-text) !important;
+}
+
+/* Force scrollbars on actor sheets to prevent content from pushing below window */
+.window-app .sheet-body,
+.window-app .editor {
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
+}
+
+.window-app .sheet-tabs ~ .sheet-body {
+  overflow-y: scroll !important;
+}
+
+/* ============================================================
+   DUNGEON THEME PALETTES
+   Each theme overrides the CSS custom properties so every
+   component that uses var(--rnk-*) automatically adapts.
+   ============================================================ */
+
+/* Smooth transition when swapping themes */
+.rnk-form {
+  transition: background 0.4s ease !important;
+}
+.rnk-section, .rnk-section__header, .rnk-header,
+.rnk-controls, .rnk-btn, .rnk-btn-small,
+.rnk-btn-icon, .rnk-select, .rnk-preview-panel {
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* classic_dungeon — default blood-crimson (no override needed, but explicit for clarity) */
+.rnk-form[data-theme="classic_dungeon"] {
+  --rnk-crimson: #c41e3a;
+  --rnk-blood: #8b1a1a;
+  --rnk-dark-blood: #3d0a0a;
+  --rnk-accent: #ff4444;
+  --rnk-accent-dark: #cc1111;
+}
+
+/* abandoned_mine — rust / dark ore */
+.rnk-form[data-theme="abandoned_mine"] {
+  --rnk-crimson: #b05020;
+  --rnk-blood: #703510;
+  --rnk-dark-blood: #2a1508;
+  --rnk-accent: #d86030;
+  --rnk-accent-dark: #b04820;
+}
+
+/* arcane_laboratory — arcane purple / spell-glow */
+.rnk-form[data-theme="arcane_laboratory"] {
+  --rnk-crimson: #8b30d0;
+  --rnk-blood: #5a1a90;
+  --rnk-dark-blood: #1a0530;
+  --rnk-accent: #b050f0;
+  --rnk-accent-dark: #7020b0;
+}
+
+/* celestial — divine gold / starlight */
+.rnk-form[data-theme="celestial"] {
+  --rnk-crimson: #c8a020;
+  --rnk-blood: #8a6c10;
+  --rnk-dark-blood: #1e1804;
+  --rnk-accent: #e8c040;
+  --rnk-accent-dark: #b08020;
+}
+
+/* clockwork — brass / copper / gear-oil */
+.rnk-form[data-theme="clockwork"] {
+  --rnk-crimson: #b87030;
+  --rnk-blood: #785020;
+  --rnk-dark-blood: #281808;
+  --rnk-accent: #d89040;
+  --rnk-accent-dark: #a06020;
+}
+
+/* corrupted_temple — plague green / rot black */
+.rnk-form[data-theme="corrupted_temple"] {
+  --rnk-crimson: #208a20;
+  --rnk-blood: #105a10;
+  --rnk-dark-blood: #051505;
+  --rnk-accent: #30b030;
+  --rnk-accent-dark: #108010;
+}
+
+/* crypt — bone / ash grey */
+.rnk-form[data-theme="crypt"] {
+  --rnk-crimson: #808060;
+  --rnk-blood: #505040;
+  --rnk-dark-blood: #181810;
+  --rnk-accent: #a0a080;
+  --rnk-accent-dark: #606050;
+}
+
+/* crystal_cavern — crystal cyan / amethyst */
+.rnk-form[data-theme="crystal_cavern"] {
+  --rnk-crimson: #00a8c8;
+  --rnk-blood: #006080;
+  --rnk-dark-blood: #001a20;
+  --rnk-accent: #20d0f0;
+  --rnk-accent-dark: #0090b0;
+}
+
+/* drow_temple — void purple / necrotic magenta */
+.rnk-form[data-theme="drow_temple"] {
+  --rnk-crimson: #9a00a0;
+  --rnk-blood: #600068;
+  --rnk-dark-blood: #180020;
+  --rnk-accent: #c030cc;
+  --rnk-accent-dark: #7800a8;
+}
+
+/* eldritch — sickly green / tentacle horror */
+.rnk-form[data-theme="eldritch"] {
+  --rnk-crimson: #508020;
+  --rnk-blood: #305010;
+  --rnk-dark-blood: #0a1505;
+  --rnk-accent: #70a830;
+  --rnk-accent-dark: #406018;
+}
+
+/* forest — canopy green / bark brown */
+.rnk-form[data-theme="forest"] {
+  --rnk-crimson: #387820;
+  --rnk-blood: #204810;
+  --rnk-dark-blood: #060f03;
+  --rnk-accent: #58a830;
+  --rnk-accent-dark: #2a6018;
+}
+
+/* frozen — glacier blue / permafrost */
+.rnk-form[data-theme="frozen"] {
+  --rnk-crimson: #50a0d0;
+  --rnk-blood: #2a6890;
+  --rnk-dark-blood: #050f1a;
+  --rnk-accent: #80c8f0;
+  --rnk-accent-dark: #3878a8;
+}
+
+/* fungal_underdark — bioluminescent spore purple */
+.rnk-form[data-theme="fungal_underdark"] {
+  --rnk-crimson: #9840c8;
+  --rnk-blood: #5a2080;
+  --rnk-dark-blood: #160820;
+  --rnk-accent: #c060f0;
+  --rnk-accent-dark: #7830a8;
+}
+
+/* infernal — hellfire orange / brimstone */
+.rnk-form[data-theme="infernal"] {
+  --rnk-crimson: #c84000;
+  --rnk-blood: #882800;
+  --rnk-dark-blood: #200800;
+  --rnk-accent: #f05020;
+  --rnk-accent-dark: #a03000;
+}
+
+/* lava — magma orange / molten red */
+.rnk-form[data-theme="lava"] {
+  --rnk-crimson: #d84820;
+  --rnk-blood: #902810;
+  --rnk-dark-blood: #1a0804;
+  --rnk-accent: #f06030;
+  --rnk-accent-dark: #b03818;
+}
+
+/* modern — steel blue / clinical white */
+.rnk-form[data-theme="modern"] {
+  --rnk-crimson: #3878c8;
+  --rnk-blood: #204878;
+  --rnk-dark-blood: #060c18;
+  --rnk-accent: #5098e8;
+  --rnk-accent-dark: #2860a0;
+}
+
+/* natural_cave — earth brown / ochre */
+.rnk-form[data-theme="natural_cave"] {
+  --rnk-crimson: #906830;
+  --rnk-blood: #5a4018;
+  --rnk-dark-blood: #150e05;
+  --rnk-accent: #b08848;
+  --rnk-accent-dark: #705028;
+}
+
+/* sewer — murky green-grey / grime */
+.rnk-form[data-theme="sewer"] {
+  --rnk-crimson: #508040;
+  --rnk-blood: #305028;
+  --rnk-dark-blood: #080e06;
+  --rnk-accent: #70a858;
+  --rnk-accent-dark: #406038;
+}
+
+/* sunken_ruins — sea teal / barnacle */
+.rnk-form[data-theme="sunken_ruins"] {
+  --rnk-crimson: #208870;
+  --rnk-blood: #105848;
+  --rnk-dark-blood: #030e0b;
+  --rnk-accent: #30b090;
+  --rnk-accent-dark: #106858;
+}
+
+/* underwater — abyss blue / bioluminescent aqua */
+.rnk-form[data-theme="underwater"] {
+  --rnk-crimson: #1060c8;
+  --rnk-blood: #083880;
+  --rnk-dark-blood: #020a18;
+  --rnk-accent: #2080e8;
+  --rnk-accent-dark: #0848a0;
+}
+
+/* volcanic — ash / dark ember / obsidian */
+.rnk-form[data-theme="volcanic"] {
+  --rnk-crimson: #b82818;
+  --rnk-blood: #781808;
+  --rnk-dark-blood: #180504;
+  --rnk-accent: #e04030;
+  --rnk-accent-dark: #901c10;
+}
+
+/* RNK Free MapGen tier styling */
+.rnk-form {
+  --rnk-tier-bg: #130707;
+  --rnk-tier-panel: rgba(22, 8, 8, 0.96);
+  --rnk-tier-surface: rgba(42, 14, 14, 0.94);
+  --rnk-tier-border: #7a2028;
+  --rnk-tier-accent: #ff6e6e;
+  --rnk-tier-glow: rgba(196, 30, 58, 0.35);
+}
+
+.rnk-gm-hub .window-content {
+  background: radial-gradient(circle at top, #1d0b0b 0%, #090505 72%) !important;
+}
+
+.rnk-header {
+  min-height: 56px !important;
+  background: linear-gradient(90deg, #260d0d 0%, #140606 100%) !important;
+  border-bottom-color: var(--rnk-tier-border) !important;
+  box-shadow: 0 0 12px var(--rnk-tier-glow) !important;
+}
+
+.rnk-brand-mark {
+  width: 28px !important;
+  height: 28px !important;
+  filter: drop-shadow(0 0 10px var(--rnk-tier-glow));
+}
+
+.rnk-brand-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.rnk-tier-badge {
+  width: fit-content;
+  padding: 2px 8px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--rnk-tier-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffd8d8;
+  border-radius: 999px;
+}
+
+.rnk-controls {
+  width: 318px !important;
+  background: linear-gradient(180deg, rgba(29, 11, 11, 0.98), rgba(18, 7, 7, 0.96)) !important;
+  padding: 10px !important;
+}
+
+.rnk-section {
+  border-color: var(--rnk-tier-border) !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(29, 11, 11, 0.98), rgba(17, 6, 6, 0.94)) !important;
+  box-shadow: 0 0 12px rgba(122, 32, 40, 0.22) !important;
+}
+
+.rnk-section__header {
+  background: linear-gradient(90deg, rgba(122, 32, 40, 0.96), rgba(58, 14, 14, 0.92)) !important;
+  letter-spacing: 0.12em !important;
+}
+
+.rnk-preview-panel {
+  background: radial-gradient(circle at top, rgba(72, 16, 16, 0.7), rgba(6, 3, 3, 0.98)) !important;
+}
+
+.rnk-preview-image {
+  border-color: var(--rnk-tier-border) !important;
+  box-shadow: 0 0 22px rgba(122, 32, 40, 0.35), 0 0 42px rgba(64, 16, 16, 0.25) !important;
+}
+
+.rnk-btn,
+.rnk-btn-small,
+.rnk-btn-icon {
+  border-color: var(--rnk-tier-border) !important;
+}
+
+.rnk-btn {
+  background: linear-gradient(135deg, #9d232b 0%, #4a1014 100%) !important;
+}
+
+.rnk-btn:hover {
+  background: linear-gradient(135deg, #ff6e6e 0%, #7a2028 100%) !important;
+}
+
+.rnk-btn-small {
+  background: rgba(90, 19, 24, 0.58) !important;
+}
+
+.rnk-btn-icon {
+  background: rgba(90, 19, 24, 0.5) !important;
+}
+
