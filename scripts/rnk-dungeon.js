@@ -250,7 +250,7 @@ function getPresetIcon(key) {
  * Uses ApplicationV2 (v12/v13+) with Handlebars.
  */
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api || {};
-const AppV2Base = HandlebarsApplicationMixin ? HandlebarsApplicationMixin(ApplicationV2) : foundry.applications.api?.HandlebarsApplicationV2 || class { static DEFAULT_OPTIONS = {}; constructor() { throw new Error("This module requires Foundry VTT V12 or V13."); } };
+const AppV2Base = HandlebarsApplicationMixin ? HandlebarsApplicationMixin(ApplicationV2) : foundry.applications.api?.HandlebarsApplicationV2 || class { static DEFAULT_OPTIONS = {}; constructor() { throw new Error("This module requires Foundry VTT V12 or later."); } };
 
 /**
  * Helper function to extract form data as an object
