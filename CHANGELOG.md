@@ -2,6 +2,11 @@
 
 All notable changes to RNK Free MapGen are documented in this file.
 
+## [1.0.6] - 2026-05-02
+
+### Fixed
+- Normalized Foundry asset paths and regenerated release packaging
+
 ## [1.0.3] - 2026-04-18
 
 ### Added

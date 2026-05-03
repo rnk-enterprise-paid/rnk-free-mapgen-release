@@ -1364,7 +1364,7 @@ class RnkDungeonGmHub extends AppV2Base {
                 active: true,
                 entryId: portalEntry?.id ?? null,
                 fontSize: 24,
-                icon: "icons/svg/downstairs.svg",
+                icon: "/icons/svg/downstairs.svg",
                 iconSize: tileSize,
                 text: `▼ Level ${i + 2}`,
                 textColor: "#FFDD88",
@@ -1386,7 +1386,7 @@ class RnkDungeonGmHub extends AppV2Base {
                 active: true,
                 entryId: portalEntry?.id ?? null,
                 fontSize: 24,
-                icon: "icons/svg/upstairs.svg",
+                icon: "/icons/svg/upstairs.svg",
                 iconSize: tileSizeB,
                 text: `▲ Level ${i + 1}`,
                 textColor: "#AADDFF",
@@ -1405,7 +1405,7 @@ class RnkDungeonGmHub extends AppV2Base {
 
             // --- Stair tiles for visual overlay ---
             await levelA.scene.createEmbeddedDocuments("Tile", [{
-                texture: { src: "icons/svg/downstairs.svg" },
+                texture: { src: "/icons/svg/downstairs.svg" },
                 x: exitPos.x * tileSize,
                 y: exitPos.y * tileSize,
                 width: tileSize,
@@ -1416,7 +1416,7 @@ class RnkDungeonGmHub extends AppV2Base {
             }]);
 
             await levelB.scene.createEmbeddedDocuments("Tile", [{
-                texture: { src: "icons/svg/upstairs.svg" },
+                texture: { src: "/icons/svg/upstairs.svg" },
                 x: entrancePos.x * tileSizeB,
                 y: entrancePos.y * tileSizeB,
                 width: tileSizeB,
@@ -2076,7 +2076,7 @@ class RnkDungeonGmHub extends AppV2Base {
               active: true,
               currentPoint: 0,
               waitTime: 3000,
-              tokenImg: "icons/svg/eye.svg" // Default sentinel eye icon
+              tokenImg: "/icons/svg/eye.svg" // Default sentinel eye icon
             };
           }
 
@@ -2142,11 +2142,11 @@ class RnkDungeonGmHub extends AppV2Base {
           if (prop.category === "NPC") {
             // Use tiles for ambient NPCs to avoid system crashes in V13 D&D 5e 
             // where tokens without valid actors can fail activation.
-            const npcImg = prop.metadata?.token_img || "icons/svg/mystery-man.svg";
+            const npcImg = prop.metadata?.token_img || "/icons/svg/mystery-man.svg";
             const npcValid = await this._validateAsset(npcImg);
             
             tiles.push({
-              texture: { src: npcValid ? npcImg : "icons/svg/mystery-man.svg" },
+              texture: { src: npcValid ? npcImg : "/icons/svg/mystery-man.svg" },
               x: x,
               y: y,
               width: (prop.metadata?.size?.[0] || 1) * tileSize,
@@ -2708,19 +2708,19 @@ class RnkDungeonGmHub extends AppV2Base {
 
   _getTrapIcon(type) {
     const icons = {
-      spike: "icons/svg/trap.svg",
-      flame: "icons/svg/fire.svg",
-      acid: "icons/svg/acid.svg",
-      scythe: "icons/svg/sword.svg",
-      teleport_random: "icons/svg/daze.svg",
-      teleport_linked: "icons/svg/portal.svg",
-      gravity: "icons/svg/net.svg",
-      web: "icons/svg/web.svg",
-      silence: "icons/svg/mute.svg",
-      alarm: "icons/svg/bell.svg",
-      drain: "icons/svg/skull.svg"
+      spike: "/icons/svg/trap.svg",
+      flame: "/icons/svg/fire.svg",
+      acid: "/icons/svg/acid.svg",
+      scythe: "/icons/svg/sword.svg",
+      teleport_random: "/icons/svg/daze.svg",
+      teleport_linked: "/icons/svg/portal.svg",
+      gravity: "/icons/svg/net.svg",
+      web: "/icons/svg/web.svg",
+      silence: "/icons/svg/mute.svg",
+      alarm: "/icons/svg/bell.svg",
+      drain: "/icons/svg/skull.svg"
     };
-    return icons[type] || "icons/svg/trap.svg";
+    return icons[type] || "/icons/svg/trap.svg";
   }
 
   async _generateMobs(result, geometry, tileSize, opts = {}, folderId = null) {
@@ -3017,7 +3017,7 @@ class RnkDungeonGmHub extends AppV2Base {
           
           // Ensure texture path is not empty — prefer actor portrait as fallback
           if (!protoToken.texture?.src) {
-            const fallback = actor.img || "icons/svg/mystery-man.svg";
+            const fallback = actor.img || "/icons/svg/mystery-man.svg";
             console.warn(`Token for ${actor.name} has no texture, using ${fallback}`);
             protoToken.texture = { src: fallback };
           }
@@ -3353,8 +3353,8 @@ class RnkDungeonGmHub extends AppV2Base {
   async _validateAsset(path) {
     if (!path) return false;
     
-    // icons/svg/ are guaranteed to ship with Foundry — skip the fetch
-    if (path.startsWith("icons/svg/")) return true;
+    // /icons/svg/ are guaranteed to ship with Foundry — skip the fetch
+    if (path.startsWith("/icons/svg/")) return true;
 
     // All other paths (including icons/creatures/, icons/commodities/, module paths, etc.)
     // must be validated via a HEAD request
