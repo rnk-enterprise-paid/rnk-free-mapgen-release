@@ -2,6 +2,11 @@
 
 All notable changes to RNK Free MapGen are documented in this file.
 
+## [1.0.8] - 2026-07-17
+
+### Fixed
+- Version bump to force Foundry to re-download and overwrite locally cached pre-1.0.7 files with the corrected mapgen-api.rnkstudios.uk endpoints
+
 ## [1.0.7] - 2026-07-17
 
 ### Fixed
