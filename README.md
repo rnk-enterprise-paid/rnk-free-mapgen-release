@@ -40,7 +40,7 @@ PNG, SVG, and JSON export. Preview panel in the GM Hub.
 ## Installation
 
 ```
-https://github.com/RNK-Enterprise/rnk-free-mapgen-release/releases/latest/download/module.json
+https://github.com/rnk-enterprise-paid/rnk-free-mapgen-release/releases/latest/download/module.json
 ```
 
 ---
