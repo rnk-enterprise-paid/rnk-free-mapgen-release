@@ -2,6 +2,11 @@
 
 All notable changes to RNK Free MapGen are documented in this file.
 
+## [1.0.7] - 2026-07-17
+
+### Fixed
+- Server API moved to a new host; default Generator API URL and Patreon auth URL now point to mapgen-api.rnkstudios.uk
+
 ## [1.0.6] - 2026-05-02
 
 ### Fixed

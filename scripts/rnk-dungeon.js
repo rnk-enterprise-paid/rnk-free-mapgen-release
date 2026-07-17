@@ -2,8 +2,8 @@ import { loadSceneTraps, renderSceneTraps, checkTraps } from "./rnk-traps.js";
 import { createPatreonAuthController } from "./rnk-patreon-auth.js";
 
 const MODULE_NAME = "rnk-free-mapgen";
-const DEFAULT_ENDPOINT = "https://api.rnk-enterprise.us/api/generate";
-const DEFAULT_AUTH_ENDPOINT = "https://api.rnk-enterprise.us";
+const DEFAULT_ENDPOINT = "https://mapgen-api.rnkstudios.uk/api/generate";
+const DEFAULT_AUTH_ENDPOINT = "https://mapgen-api.rnkstudios.uk";
 const MODULE_TIER = "free";
 
 // ── Dialog compatibility shim (V11/V12 legacy ↔ V13 DialogV2) ────────────────
@@ -1623,7 +1623,7 @@ class RnkDungeonGmHub extends AppV2Base {
 
       // Specific advice for PNA (Private Network Access) errors in secure contexts
       if (window.location.protocol === "https:" && (url.includes("192.168.") || url.includes("127.0.0.1") || url.includes("localhost"))) {
-        ui.notifications.error(`<b>RNK MapGen: Connection blocked.</b><br>You are accessing Foundry via HTTPS, but the generator is on a local IP (${url}). Browsers block this for security.<br><br><b>Recommended Fix:</b> Set "Generator API URL" to <code>http://192.168.1.52:8001/api/generate</code> (or your wired maintenance IP) in Module Settings.`, {permanent: true});
+        ui.notifications.error(`<b>RNK MapGen: Connection blocked.</b><br>You are accessing Foundry via HTTPS, but the generator is on a local IP (${url}). Browsers block this for security.<br><br><b>Recommended Fix:</b> Set "Generator API URL" to <code>https://mapgen-api.rnkstudios.uk/api/generate</code> in Module Settings.`, {permanent: true});
       }
     }
   }
@@ -3492,7 +3492,7 @@ Hooks.on("renderSceneControls", (app, html) => {
 Hooks.once("init", () => {
   game.settings.register(MODULE_NAME, "apiEndpoint", {
     name: "Generator API URL",
-    hint: "URL where the RNK Free MapGen server listens (e.g. https://api.rnk-enterprise.us/api/generate)",
+    hint: "URL where the RNK Free MapGen server listens (e.g. https://mapgen-api.rnkstudios.uk/api/generate)",
     scope: "world",
     config: true,
     type: String,
@@ -3501,7 +3501,7 @@ Hooks.once("init", () => {
 
   game.settings.register(MODULE_NAME, "patreonAuthUrl", {
     name: "Patreon Auth URL",
-    hint: "URL where the RNK Patreon auth server listens (e.g. https://api.rnk-enterprise.us)",
+    hint: "URL where the RNK Patreon auth server listens (e.g. https://mapgen-api.rnkstudios.uk)",
     scope: "world",
     config: true,
     type: String,
