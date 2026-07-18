@@ -2,7 +2,7 @@
   "id": "rnk-free-mapgen",
   "title": "RNK™ Free MapGen",
   "description": "Standalone free-tier map generator with theme-driven textures, compendium mob/loot spawning, death loot drops, campaign mode, scene-warp stair links, Patreon login, and deep Foundry VTT integration.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "authors": [
     {
       "name": "RNK™ Enterprise"

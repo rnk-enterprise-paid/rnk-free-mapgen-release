@@ -254,7 +254,7 @@
       </div>
 
       <div class="rnk-row actions">
-        <button type="button" class="rnk-btn rnk-btn--primary" data-action="generate" {{#if (and (eq data.genUsed data.genLimit) (not data.genUnlimited))}}disabled title="Daily limit reached. Try again tomorrow."{{/if}}>
+        <button type="button" class="rnk-btn rnk-btn--primary" data-action="generate" {{#if (eq data.genUsed data.genLimit)}}disabled title="Daily limit reached. Try again tomorrow."{{/if}}>
           <i class="fas fa-dice-d20"></i> GENERATE
         </button>
         <button type="button" class="rnk-btn rnk-btn--success" data-action="create-scene" {{#unless data.hasResult}}disabled{{/unless}}>
@@ -262,12 +262,6 @@
         </button>
       </div>
 
-      {{#if data.genUnlimited}}
-      <div class="rnk-gen-counter">
-        <span class="rnk-gen-counter__label"><i class="fas fa-infinity"></i> Daily Generations</span>
-        <span class="rnk-gen-counter__text">Unlimited (Patreon access)</span>
-      </div>
-      {{else}}
       <div class="rnk-gen-counter {{#if (eq data.genUsed data.genLimit)}}rnk-gen-counter--exhausted{{/if}}">
         <span class="rnk-gen-counter__label"><i class="fas fa-hourglass-half"></i> Daily Generations</span>
         <span class="rnk-gen-counter__pips">
@@ -280,7 +274,6 @@
           <span class="rnk-gen-counter__limit-msg">Limit reached — resets in 24h</span>
         {{/if}}
       </div>
-      {{/if}}
 
       <div class="rnk-row exports">
         <button type="button" class="rnk-btn-small" data-action="download-png" {{#unless data.hasResult}}disabled{{/unless}}>PNG</button>

@@ -2,6 +2,11 @@
 
 All notable changes to RNK Free MapGen are documented in this file.
 
+## [1.0.10] - 2026-07-18
+
+### Fixed
+- Reverted the 1.0.9 change that waived the daily generation limit for Patreon patrons using this module. The free module is always capped at 3 generations/24h regardless of Patreon status — unlimited generation is what the paid tier modules (Alpha/Core/Architect) are for.
+
 ## [1.0.9] - 2026-07-18
 
 ### Fixed
