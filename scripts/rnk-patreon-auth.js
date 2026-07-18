@@ -41,6 +41,7 @@ export function createPatreonAuthController({
   moduleName,
   defaultAuthBaseUrl,
   settingKey = "patreonAuthUrl",
+  sharedTokenSettingKey = "patreonSharedToken",
   onChange = null,
 }) {
   if (!moduleName) {
@@ -60,6 +61,27 @@ export function createPatreonAuthController({
     return value.replace(/\/$/, "");
   }
 
+  // The shared token lives in a world-scope setting so that once any GM (or
+  // Assistant GM) in the world authenticates with Patreon, every other GM in
+  // that same world inherits the same access without logging in separately,
+  // and the login survives page reloads instead of living only in memory.
+  function readSharedToken() {
+    try {
+      return String(game.settings.get(moduleName, sharedTokenSettingKey) || "");
+    } catch (_error) {
+      return "";
+    }
+  }
+
+  function writeSharedToken(token) {
+    if (!game.user?.isGM) return;
+    try {
+      game.settings.set(moduleName, sharedTokenSettingKey, token || "");
+    } catch (_error) {
+      // Setting may not be registered yet on very early calls; safe to ignore.
+    }
+  }
+
   function writeToken(token) {
     const store = getTokenStore();
     if (token) {
@@ -71,13 +93,18 @@ export function createPatreonAuthController({
       authState.token = "";
       authState.claims = null;
     }
+    writeSharedToken(token);
     onChange?.(getSnapshot());
     return token;
   }
 
   function readToken() {
     const store = getTokenStore();
-    const token = store[tokenKey] || "";
+    let token = store[tokenKey] || "";
+    if (!token) {
+      token = readSharedToken();
+      if (token) store[tokenKey] = token;
+    }
     if (!token) return "";
     if (authState.token !== token) {
       authState.token = token;

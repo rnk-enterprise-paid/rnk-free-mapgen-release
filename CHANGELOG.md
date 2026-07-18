@@ -2,6 +2,13 @@
 
 All notable changes to RNK Free MapGen are documented in this file.
 
+## [1.0.9] - 2026-07-18
+
+### Fixed
+- GMs (including Assistant GMs) now share Patreon-authenticated access automatically once any GM logs in — access is stored per-world and persists across reloads instead of requiring a fresh per-browser Patreon login every session
+- Daily generation limit no longer applies to authenticated Patreon patrons; GM Hub now shows "Unlimited (Patreon access)" instead of the 3/day counter in that case
+- Dungeon prop, furniture, and floor textures now load correctly instead of silently 404ing
+
 ## [1.0.8] - 2026-07-17
 
 ### Fixed

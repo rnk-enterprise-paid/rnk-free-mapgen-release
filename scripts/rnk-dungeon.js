@@ -701,11 +701,12 @@ class RnkDungeonGmHub extends AppV2Base {
       currentScene: trackerData
     };
 
-    // Daily generation quota for free tier
+    // Daily generation quota for free tier (waived for authenticated Patreon patrons)
     const genStatus = this._getDailyGenStatus();
     context.data.genUsed = genStatus.used;
     context.data.genRemaining = genStatus.remaining;
     context.data.genLimit = genStatus.limit;
+    context.data.genUnlimited = genStatus.unlimited;
 
     // Available Item compendiums and Item folders for loot sourcing
     context.data.lootCompendiums = [
@@ -1011,9 +1012,9 @@ class RnkDungeonGmHub extends AppV2Base {
       }
     }
 
-    // Daily generation limit check (free tier: 3/day)
+    // Daily generation limit check (free tier: 3/day) — waived for authenticated Patreon patrons
     const genStatus = this._getDailyGenStatus();
-    if (genStatus.remaining <= 0) {
+    if (!genStatus.unlimited && genStatus.remaining <= 0) {
       ui.notifications.warn("RNK Free MapGen: Daily limit reached (3/3). Try again tomorrow or upgrade at patreon.com/RagNaroks.");
       this._isGenerating = false;
       return;
@@ -1680,17 +1681,25 @@ class RnkDungeonGmHub extends AppV2Base {
 
   _getDailyGenStatus() {
     const FREE_LIMIT = 3;
+    // The 3/day cap only applies to unauthenticated free access. Any
+    // authenticated Patreon tier (alpha/core/architect) is unlimited here —
+    // the free module's local cap should never override real Patreon access.
+    const hasPaidAccess = (this.patreonAuth?.getTierRank?.() ?? 0) > 0;
+    if (hasPaidAccess) {
+      return { used: 0, remaining: FREE_LIMIT, limit: FREE_LIMIT, unlimited: true, stored: null };
+    }
     const now = Date.now();
     let stored = game.settings.get(MODULE_NAME, "dailyGenerations");
     if (!stored || now > stored.resetAt) {
       stored = { count: 0, resetAt: now + 86400000 };
       game.settings.set(MODULE_NAME, "dailyGenerations", stored);
     }
-    return { used: stored.count, remaining: FREE_LIMIT - stored.count, limit: FREE_LIMIT, stored };
+    return { used: stored.count, remaining: FREE_LIMIT - stored.count, limit: FREE_LIMIT, unlimited: false, stored };
   }
 
   _incrementDailyGen() {
     const status = this._getDailyGenStatus();
+    if (status.unlimited) return;
     game.settings.set(MODULE_NAME, "dailyGenerations", { count: status.used + 1, resetAt: status.stored.resetAt });
   }
 
@@ -3506,6 +3515,15 @@ Hooks.once("init", () => {
     config: true,
     type: String,
     default: DEFAULT_AUTH_ENDPOINT,
+  });
+
+  // World-scoped so a single Patreon login (by any GM) is shared with every
+  // GM/Assistant GM in this world, and survives page reloads.
+  game.settings.register(MODULE_NAME, "patreonSharedToken", {
+    scope: "world",
+    config: false,
+    type: String,
+    default: "",
   });
 
   game.settings.register(MODULE_NAME, "globalAnalytics", {
